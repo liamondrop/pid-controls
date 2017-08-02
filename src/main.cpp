@@ -56,13 +56,15 @@ int main() {
           double speed = std::stod(j[1]["speed"].get<std::string>());
           double angle = std::stod(j[1]["steering_angle"].get<std::string>());
 
+          std::cout << "SPEED: " << speed << std::endl;
+          std::cout << "ANGLE: " << angle << std::endl;
+
           json msgJson;
 
           // update steering p,i,d error and augment steering angle
           // by the total error
           pid_steering.updateError(cte);
           msgJson["steering_angle"] = pid_steering.totalError();
-
 
           // Update throttle p,i,d error and augment throttle by the total error
           // Clamp the throttle to values from -0.1 (braking) to 0.75
